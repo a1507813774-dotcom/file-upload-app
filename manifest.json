@@ -1,0 +1,25 @@
+{
+  "name": "文件上传助手",
+  "short_name": "上传助手",
+  "description": "一个可以从手机桌面打开的文件上传 PWA",
+  "start_url": "./index.html?v=1",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
