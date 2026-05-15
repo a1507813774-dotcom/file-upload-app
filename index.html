@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>文件上传助手</title>
+
+  <link rel="manifest" href="./manifest.json">
+
+  <link rel="icon" href="./icon.png" type="image/png">
+
+  <link rel="apple-touch-icon" href="./icon.png">
+
+  <meta name="theme-color" content="#111827">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 18px;
+      display: block;
+      margin-bottom: 20px;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin: 0 0 24px;
+      color: #d1d5db;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .upload-box {
+      border: 2px dashed rgba(255, 255, 255, 0.35);
+      border-radius: 18px;
+      padding: 26px 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      background: white;
+      color: #111827;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .file-name {
+      margin-top: 18px;
+      color: #93c5fd;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    .footer {
+      margin-top: 22px;
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+    <img src="./icon.png" alt="App 图标" class="icon">
+
+    <h1>文件上传助手</h1>
+
+    <p>
+      这是一个可以添加到手机桌面的网页 App。当前版本提供文件上传入口，并使用 icon.png 作为桌面图标。
+    </p>
+
+    <div class="upload-box">
+      <div>请选择一个文件</div>
+
+      <label class="button" for="fileInput">
+        上传文件
+      </label>
+
+      <input id="fileInput" type="file">
+
+      <div id="fileName" class="file-name"></div>
+    </div>
+
+    <div class="footer">
+      PWA · 手机桌面入口测试版
+    </div>
+  </main>
+
+  <script>
+    const fileInput = document.getElementById("fileInput");
+    const fileName = document.getElementById("fileName");
+
+    fileInput.addEventListener("change", function () {
+      const file = fileInput.files[0];
+
+      if (file) {
+        fileName.textContent = "已选择：" + file.name;
+      } else {
+        fileName.textContent = "";
+      }
+    });
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./service-worker.js");
+    }
+  </script>
+</body>
+</html>
